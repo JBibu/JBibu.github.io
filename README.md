@@ -1,6 +1,6 @@
 ![portfolio-banner](https://github.com/user-attachments/assets/6cb88ef4-aed5-4798-a9f2-4db2b2ec59c4)
 
-# Next.js Portfolio Website
+# shadcn/ui & Next.js Portfolio Website
 
 This project is a modern, responsive portfolio website built with Next.js, Tailwind CSS, and shadcn/ui components. It features a clean design with particle animation backgrounds, acrylic-effect navbar, and multiple sections to showcase your skills and projects.
 
@@ -19,12 +19,11 @@ Visit `http://localhost:3000` to see your portfolio website in action.
 
 ## ✨ Features
 
-- **Modern UI Design** with acrylic-effect navbar and particle animations
+- **Modern UI Design** with acrylic-effect navbar, particle animations and shadcn components
 - **Fully Responsive** layout that works on mobile, tablet, and desktop
 - **Dark/Light Mode Support** using Tailwind CSS
 - **Component-based Architecture** with Next.js and React
 - **Interactive Sections** for about, projects, skills, and contact
-- **shadcn/ui Components** for consistent design language
 - **SEO Optimized** structure
 - **Lucide Icons** integration for beautiful, consistent iconography
 - **Easy Customization** through simple component props
