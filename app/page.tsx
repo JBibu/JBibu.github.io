@@ -4,11 +4,6 @@
 import { useState, useEffect } from "react";
 import { Navbar1 } from "@/components/Navbar1";
 import { 
-  Book, 
-  Menu, 
-  Sunset, 
-  Trees, 
-  Zap,
   Github,
   Linkedin,
   Mail,
