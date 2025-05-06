@@ -9,6 +9,7 @@ import {
   Mail,
   Download
 } from "lucide-react";
+import Image from "next/image"; // Import Next.js Image component
 
 import Particles from "@/components/Particles"; // Import the Particles component
 
@@ -158,13 +159,13 @@ const About = () => {
           <div className="space-y-4">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">About Me</h2>
             <p className="text-gray-500 md:text-xl dark:text-gray-400">
-              I'm a passionate full-stack developer with over 5 years of experience building web applications.
+              I&apos;m a passionate full-stack developer with over 5 years of experience building web applications.
               I specialize in React, Next.js, and Node.js, with a strong focus on creating accessible and
               performant user interfaces.
             </p>
             <p className="text-gray-500 md:text-xl dark:text-gray-400">
-              My journey in web development started in 2018, and since then, I've worked with various
-              startups and agencies to deliver high-quality products. I'm constantly learning new technologies
+              My journey in web development started in 2018, and since then, I&apos;ve worked with various
+              startups and agencies to deliver high-quality products. I&apos;m constantly learning new technologies
               and improving my skills to stay ahead in this ever-evolving field.
             </p>
           </div>
@@ -249,11 +250,14 @@ const Projects = () => {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mt-8">
           {projects.map((project, index) => (
             <Card key={index} className="overflow-hidden">
-              <div className="aspect-[16/9] overflow-hidden">
-                <img
+              <div className="aspect-[16/9] overflow-hidden relative">
+                <Image
                   src={project.image}
                   alt={project.title}
-                  className="object-cover w-full h-full transition-all hover:scale-105"
+                  className="object-cover transition-all hover:scale-105"
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  priority={index < 2}
                 />
               </div>
               <CardHeader>
@@ -393,7 +397,7 @@ const Contact = () => {
           <Card className="p-6">
             <CardHeader>
               <CardTitle>Send a Message</CardTitle>
-              <CardDescription>Fill out the form below and I'll get back to you as soon as possible.</CardDescription>
+              <CardDescription>Fill out the form below and I&apos;ll get back to you as soon as possible.</CardDescription>
             </CardHeader>
             <CardContent>
               <form className="space-y-4">

@@ -1,3 +1,7 @@
+// components/Navbar1.tsx
+"use client";
+
+import Image from "next/image"; // Import Next.js Image component
 import { Book, Menu, Sunset, Trees, Zap } from "lucide-react";
 
 import {
@@ -136,6 +140,69 @@ const Navbar1 = ({
     signup: { title: "Sign up", url: "#" },
   },
 }: Navbar1Props) => {
+  // Helper function to render desktop menu items
+  const renderMenuItem = (item: MenuItem) => {
+    if (item.items) {
+      return (
+        <NavigationMenuItem key={item.title}>
+          <NavigationMenuTrigger>{item.title}</NavigationMenuTrigger>
+          <NavigationMenuContent className="bg-popover text-popover-foreground">
+            {item.items.map((subItem) => (
+              <NavigationMenuLink asChild key={subItem.title} className="w-80">
+                <SubMenuLink item={subItem} />
+              </NavigationMenuLink>
+            ))}
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+      );
+    }
+
+    return (
+      <NavigationMenuItem key={item.title}>
+        <Button 
+          variant="ghost" 
+          asChild 
+          className="h-10 w-max px-4 py-2 text-sm font-medium"
+        >
+          <NavigationMenuLink href={item.url}>
+            {item.title}
+          </NavigationMenuLink>
+        </Button>
+      </NavigationMenuItem>
+    );
+  };
+
+  // Helper function to render mobile menu items
+  const renderMobileMenuItem = (item: MenuItem) => {
+    if (item.items) {
+      return (
+        <AccordionItem key={item.title} value={item.title} className="border-b-0">
+          <AccordionTrigger className="text-md py-0 font-semibold hover:no-underline">
+            {item.title}
+          </AccordionTrigger>
+          <AccordionContent className="mt-2">
+            {item.items.map((subItem) => (
+              <SubMenuLink key={subItem.title} item={subItem} />
+            ))}
+          </AccordionContent>
+        </AccordionItem>
+      );
+    }
+
+    return (
+      <Button 
+        key={item.title} 
+        variant="ghost" 
+        asChild 
+        className="justify-start px-2 font-semibold"
+      >
+        <a href={item.url}>
+          {item.title}
+        </a>
+      </Button>
+    );
+  };
+
   return (
     <section className="py-4">
       <div className="container">
@@ -144,7 +211,15 @@ const Navbar1 = ({
           <div className="flex items-center gap-6">
             {/* Logo */}
             <a href={logo.url} className="flex items-center gap-2">
-              <img src={logo.src} className="max-h-8" alt={logo.alt} />
+              <div className="relative w-8 h-8">
+                <Image 
+                  src={logo.src} 
+                  alt={logo.alt}
+                  fill 
+                  sizes="32px"
+                  className="object-contain"
+                />
+              </div>
               <span className="text-lg font-semibold tracking-tighter">
                 {logo.title}
               </span>
@@ -173,7 +248,15 @@ const Navbar1 = ({
           <div className="flex items-center justify-between">
             {/* Logo */}
             <a href={logo.url} className="flex items-center gap-2">
-              <img src={logo.src} className="max-h-8" alt={logo.alt} />
+              <div className="relative w-8 h-8">
+                <Image 
+                  src={logo.src} 
+                  alt={logo.alt}
+                  fill 
+                  sizes="32px"
+                  className="object-contain"
+                />
+              </div>
             </a>
             <Sheet>
               <SheetTrigger asChild>
@@ -185,7 +268,15 @@ const Navbar1 = ({
                 <SheetHeader>
                   <SheetTitle>
                     <a href={logo.url} className="flex items-center gap-2">
-                      <img src={logo.src} className="max-h-8" alt={logo.alt} />
+                      <div className="relative w-8 h-8">
+                        <Image 
+                          src={logo.src} 
+                          alt={logo.alt}
+                          fill 
+                          sizes="32px"
+                          className="object-contain"
+                        />
+                      </div>
                     </a>
                   </SheetTitle>
                 </SheetHeader>
@@ -217,69 +308,7 @@ const Navbar1 = ({
   );
 };
 
-// Modified renderMenuItem function in Navbar1.tsx
-const renderMenuItem = (item: MenuItem) => {
-  if (item.items) {
-    return (
-      <NavigationMenuItem key={item.title}>
-        <NavigationMenuTrigger>{item.title}</NavigationMenuTrigger>
-        <NavigationMenuContent className="bg-popover text-popover-foreground">
-          {item.items.map((subItem) => (
-            <NavigationMenuLink asChild key={subItem.title} className="w-80">
-              <SubMenuLink item={subItem} />
-            </NavigationMenuLink>
-          ))}
-        </NavigationMenuContent>
-      </NavigationMenuItem>
-    );
-  }
-
-  return (
-    <NavigationMenuItem key={item.title}>
-      <Button 
-        variant="ghost" 
-        asChild 
-        className="h-10 w-max px-4 py-2 text-sm font-medium"
-      >
-        <NavigationMenuLink href={item.url}>
-          {item.title}
-        </NavigationMenuLink>
-      </Button>
-    </NavigationMenuItem>
-  );
-};
-
-// For the mobile menu, you'll also want to update the renderMobileMenuItem function:
-const renderMobileMenuItem = (item: MenuItem) => {
-  if (item.items) {
-    return (
-      <AccordionItem key={item.title} value={item.title} className="border-b-0">
-        <AccordionTrigger className="text-md py-0 font-semibold hover:no-underline">
-          {item.title}
-        </AccordionTrigger>
-        <AccordionContent className="mt-2">
-          {item.items.map((subItem) => (
-            <SubMenuLink key={subItem.title} item={subItem} />
-          ))}
-        </AccordionContent>
-      </AccordionItem>
-    );
-  }
-
-  return (
-    <Button 
-      key={item.title} 
-      variant="ghost" 
-      asChild 
-      className="justify-start px-2 font-semibold"
-    >
-      <a href={item.url}>
-        {item.title}
-      </a>
-    </Button>
-  );
-};
-
+// SubMenuLink component for dropdown items
 const SubMenuLink = ({ item }: { item: MenuItem }) => {
   return (
     <a
