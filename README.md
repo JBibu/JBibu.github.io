@@ -9,8 +9,8 @@ This project is a modern, responsive portfolio website built with Next.js, Tailw
 Clone the repository and install dependencies:
 
 ```bash
-git clone https://github.com/yourusername/portfolio-website.git
-cd portfolio-website
+git clone https://github.com/JBibu/shadcn-nextjs-portfolio.git
+cd shadcn-nextjs-portfolio
 npm install
 npx next
 ```
