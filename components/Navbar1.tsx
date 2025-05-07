@@ -1,7 +1,8 @@
 // components/Navbar1.tsx
 "use client";
 
-import Image from "next/image"; // Import Next.js Image component
+import { useState } from "react";
+import Image from "next/image";
 import { Book, Menu, Sunset, Trees, Zap } from "lucide-react";
 
 import {
@@ -21,6 +22,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetHeader,
   SheetTitle,
@@ -140,6 +142,13 @@ const Navbar1 = ({
     signup: { title: "Sign up", url: "#" },
   },
 }: Navbar1Props) => {
+  const [open, setOpen] = useState(false);
+
+  // Helper function to close the menu
+  const closeMenu = () => {
+    setOpen(false);
+  };
+
   // Helper function to render desktop menu items
   const renderMenuItem = (item: MenuItem) => {
     if (item.items) {
@@ -182,7 +191,9 @@ const Navbar1 = ({
           </AccordionTrigger>
           <AccordionContent className="mt-2">
             {item.items.map((subItem) => (
-              <SubMenuLink key={subItem.title} item={subItem} />
+              <SheetClose asChild key={subItem.title}>
+                <SubMenuLink item={subItem} />
+              </SheetClose>
             ))}
           </AccordionContent>
         </AccordionItem>
@@ -190,16 +201,17 @@ const Navbar1 = ({
     }
 
     return (
-      <Button 
-        key={item.title} 
-        variant="ghost" 
-        asChild 
-        className="justify-start px-2 font-semibold"
-      >
-        <a href={item.url}>
-          {item.title}
-        </a>
-      </Button>
+      <SheetClose asChild key={item.title}>
+        <Button 
+          variant="ghost" 
+          asChild 
+          className="justify-start px-2 font-semibold"
+        >
+          <a href={item.url}>
+            {item.title}
+          </a>
+        </Button>
+      </SheetClose>
     );
   };
 
@@ -233,11 +245,12 @@ const Navbar1 = ({
             </div>
           </div>
           <div className="flex gap-2">
-            <ModeToggle />
-            <Button asChild variant="outline" size="sm">
+            {/* Made all these buttons the same size with h-9 */}
+            <ModeToggle className="h-9" />
+            <Button asChild variant="outline" size="sm" className="h-9">
               <a href={auth.login.url}>{auth.login.title}</a>
             </Button>
-            <Button asChild size="sm">
+            <Button asChild size="sm" className="h-9">
               <a href={auth.signup.url}>{auth.signup.title}</a>
             </Button>
           </div>
@@ -245,8 +258,8 @@ const Navbar1 = ({
 
         {/* Mobile Menu */}
         <div className="block lg:hidden">
-          <div className="flex items-center justify-between">
-            {/* Logo */}
+          <div className="flex items-center justify-between px-2">
+            {/* Logo with title */}
             <a href={logo.url} className="flex items-center gap-2">
               <div className="relative w-8 h-8">
                 <Image 
@@ -257,27 +270,22 @@ const Navbar1 = ({
                   className="object-contain"
                 />
               </div>
+              <span className="text-lg font-semibold tracking-tighter">
+                {logo.title}
+              </span>
             </a>
-            <Sheet>
+            <Sheet open={open} onOpenChange={setOpen}>
               <SheetTrigger asChild>
-                <Button variant="outline" size="icon">
+                <Button variant="ghost" size="icon" className="mr-2">
                   <Menu className="size-4" />
                 </Button>
               </SheetTrigger>
               <SheetContent className="overflow-y-auto">
                 <SheetHeader>
                   <SheetTitle>
-                    <a href={logo.url} className="flex items-center gap-2">
-                      <div className="relative w-8 h-8">
-                        <Image 
-                          src={logo.src} 
-                          alt={logo.alt}
-                          fill 
-                          sizes="32px"
-                          className="object-contain"
-                        />
-                      </div>
-                    </a>
+                    <span className="text-lg font-semibold tracking-tighter">
+                      Menu
+                    </span>
                   </SheetTitle>
                 </SheetHeader>
                 <div className="flex flex-col gap-6 p-4">
@@ -291,12 +299,16 @@ const Navbar1 = ({
 
                   <div className="flex flex-col gap-3">
                     <ModeToggle />
-                    <Button asChild variant="outline">
-                      <a href={auth.login.url}>{auth.login.title}</a>
-                    </Button>
-                    <Button asChild>
-                      <a href={auth.signup.url}>{auth.signup.title}</a>
-                    </Button>
+                    <SheetClose asChild>
+                      <Button asChild variant="outline">
+                        <a href={auth.login.url}>{auth.login.title}</a>
+                      </Button>
+                    </SheetClose>
+                    <SheetClose asChild>
+                      <Button asChild>
+                        <a href={auth.signup.url}>{auth.signup.title}</a>
+                      </Button>
+                    </SheetClose>
                   </div>
                 </div>
               </SheetContent>
