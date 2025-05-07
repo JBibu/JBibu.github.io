@@ -144,11 +144,6 @@ const Navbar1 = ({
 }: Navbar1Props) => {
   const [open, setOpen] = useState(false);
 
-  // Helper function to close the menu
-  const closeMenu = () => {
-    setOpen(false);
-  };
-
   // Helper function to render desktop menu items
   const renderMenuItem = (item: MenuItem) => {
     if (item.items) {
