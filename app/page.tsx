@@ -300,9 +300,18 @@ const Projects = () => {
 
 const Skills = () => {
   const skillCategories = {
-    devops: ["Linux", "Windows", "Docker", "Kubernetes", "AWS", "Azure", "Terraform", "Ansible", "PostgreSQL", "Nginx"],
-    development: ["HTML", "CSS", "JavaScript", "Tailwind", "Angular", "Python", "Java", "PHP", "Node.js", "WordPress"],
-    learning: ["Rust", "React", "TypeScript", "Godot"]
+    devops: {
+      title: "DevOps & Infrastructure",
+      icons: "linux,windows,bash,powershell,aws,azure,gcp,openstack,proxmox,terraform,jenkins,ansible,s3,docker,kubernetes,prometheus,grafana,nginx,postgres"
+    },
+    development: {
+      title: "Web Development",
+      icons: "html,css,javascript,tailwind,angular,py,java,php,laravel,wordpress,nodejs,postman,electron"
+    },
+    learning: {
+      title: "Currently Learning",
+      icons: "rust,react,typescript,godot"
+    }
   };
 
   return (
@@ -332,31 +341,46 @@ const Skills = () => {
               <TabsTrigger value="learning">Learning</TabsTrigger>
             </TabsList>
             <TabsContent value="devops" className="mt-6">
-              <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-                {skillCategories.devops.map((skill, index) => (
-                  <Card key={index} className="flex items-center justify-center p-4">
-                    <p className="text-center font-medium">{skill}</p>
-                  </Card>
-                ))}
-              </div>
+              <Card className="p-6">
+                <CardContent className="flex flex-col items-center justify-center">
+                  <h3 className="text-xl font-semibold mb-4">{skillCategories.devops.title}</h3>
+                  <div className="flex justify-center w-full overflow-hidden">
+                    <img
+                      src={`https://go-skill-icons.vercel.app/api/icons?i=${skillCategories.devops.icons}&theme=light&perline=6&titles=true`}
+                      alt="DevOps Skills"
+                      className="w-full max-w-4xl"
+                    />
+                  </div>
+                </CardContent>
+              </Card>
             </TabsContent>
             <TabsContent value="development" className="mt-6">
-              <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-                {skillCategories.development.map((skill, index) => (
-                  <Card key={index} className="flex items-center justify-center p-4">
-                    <p className="text-center font-medium">{skill}</p>
-                  </Card>
-                ))}
-              </div>
+              <Card className="p-6">
+                <CardContent className="flex flex-col items-center justify-center">
+                  <h3 className="text-xl font-semibold mb-4">{skillCategories.development.title}</h3>
+                  <div className="flex justify-center w-full overflow-hidden">
+                    <img
+                      src={`https://go-skill-icons.vercel.app/api/icons?i=${skillCategories.development.icons}&theme=light&perline=5&titles=true`}
+                      alt="Development Skills"
+                      className="w-full max-w-4xl"
+                    />
+                  </div>
+                </CardContent>
+              </Card>
             </TabsContent>
             <TabsContent value="learning" className="mt-6">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {skillCategories.learning.map((skill, index) => (
-                  <Card key={index} className="flex items-center justify-center p-4">
-                    <p className="text-center font-medium">{skill}</p>
-                  </Card>
-                ))}
-              </div>
+              <Card className="p-6">
+                <CardContent className="flex flex-col items-center justify-center">
+                  <h3 className="text-xl font-semibold mb-4">{skillCategories.learning.title}</h3>
+                  <div className="flex justify-center w-full overflow-hidden">
+                    <img
+                      src={`https://go-skill-icons.vercel.app/api/icons?i=${skillCategories.learning.icons}&theme=light&perline=4&titles=true`}
+                      alt="Learning Skills"
+                      className="w-full max-w-md"
+                    />
+                  </div>
+                </CardContent>
+              </Card>
             </TabsContent>
           </Tabs>
         </div>
