@@ -301,6 +301,8 @@ const Projects = () => {
 
 const Skills = () => {
   const { theme } = useTheme();
+  const iconTheme = theme === 'dark' ? 'dark' : 'light';
+  
   const skillCategories = {
     devops: {
       title: "DevOps & Infrastructure",
@@ -348,7 +350,7 @@ const Skills = () => {
                   <h3 className="text-xl font-semibold mb-4">{skillCategories.devops.title}</h3>
                   <div className="flex justify-center w-full overflow-hidden">
                     <img
-                      src={`https://go-skill-icons.vercel.app/api/icons?i=${skillCategories.devops.icons}&theme=${theme === 'dark' ? 'dark' : 'light'}&perline=6&titles=true&size=small`}
+                      src={`https://go-skill-icons.vercel.app/api/icons?i=${skillCategories.devops.icons}&theme=${iconTheme}&perline=6&titles=true&size=small`}
                       alt="DevOps Skills"
                       className="w-full max-w-4xl"
                     />
@@ -362,7 +364,7 @@ const Skills = () => {
                   <h3 className="text-xl font-semibold mb-4">{skillCategories.development.title}</h3>
                   <div className="flex justify-center w-full overflow-hidden">
                     <img
-                      src={`https://go-skill-icons.vercel.app/api/icons?i=${skillCategories.development.icons}&theme=${theme === 'dark' ? 'dark' : 'light'}&perline=5&titles=true&size=small`}
+                      src={`https://go-skill-icons.vercel.app/api/icons?i=${skillCategories.development.icons}&theme=${iconTheme}&perline=5&titles=true&size=small`}
                       alt="Development Skills"
                       className="w-full max-w-4xl"
                     />
@@ -376,7 +378,7 @@ const Skills = () => {
                   <h3 className="text-xl font-semibold mb-4">{skillCategories.learning.title}</h3>
                   <div className="flex justify-center w-full overflow-hidden">
                     <img
-                      src={`https://go-skill-icons.vercel.app/api/icons?i=${skillCategories.learning.icons}&theme=${theme === 'dark' ? 'dark' : 'light'}&perline=4&titles=true&size=small`}
+                      src={`https://go-skill-icons.vercel.app/api/icons?i=${skillCategories.learning.icons}&theme=${iconTheme}&perline=4&titles=true&size=small`}
                       alt="Learning Skills"
                       className="w-full max-w-md"
                     />
