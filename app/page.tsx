@@ -7,7 +7,7 @@ import {
   Linkedin,
   Mail,
   Download,
-  MapPin // Added for location
+  MapPin
 } from "lucide-react";
 import Image from "next/image";
 
@@ -19,7 +19,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 
-// Modify the Navbar1 component to have acrylic effect
 const AcrylicNavbar = () => {
   const [scrolled, setScrolled] = useState(false);
 
@@ -37,7 +36,6 @@ const AcrylicNavbar = () => {
     };
   }, [scrolled]);
 
-  // Custom navbar props
   const navbarProps = {
     logo: {
       url: "/",
@@ -73,11 +71,9 @@ const AcrylicNavbar = () => {
   );
 };
 
-// Hero Section
 const Hero = () => {
   return (
     <section id="home" className="pt-32 pb-16 md:pt-40 md:pb-24 relative">
-      {/* Add Particles component as background */}
       <Particles
         className="absolute inset-0 -z-10"
         quantity={150}
@@ -91,13 +87,13 @@ const Hero = () => {
           <div className="flex flex-col justify-center space-y-4">
             <div className="space-y-2">
               <Badge variant="outline" className="inline-block">
-                System Administrator & Aspiring Full Stack Developer
+                System Admin & Web Developer
               </Badge>
               <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
                 Javier Muñoz Solano
               </h1>
               <p className="max-w-[600px] text-gray-500 md:text-xl dark:text-gray-400">
-                Building efficient, scalable systems with a passion for DevOps and web application development.
+                Building efficient systems with a focus on DevOps and web development
               </p>
               <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400 mt-2">
                 <MapPin className="h-4 w-4" />
@@ -145,11 +141,9 @@ const Hero = () => {
   );
 };
 
-// About Section
 const About = () => {
   return (
     <section id="about" className="py-16 bg-gray-50 dark:bg-gray-900 relative">
-      {/* Add Particles with gray color for About section */}
       <Particles
         className="absolute inset-0 -z-10 opacity-30"
         quantity={100}
@@ -163,19 +157,16 @@ const About = () => {
           <div className="space-y-4">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">About Me</h2>
             <p className="text-gray-500 md:text-xl dark:text-gray-400">
-              I&apos;m an aspiring full-stack developer and system administrator with a solid foundation in IT infrastructure and a passion for DevOps. 
-              Currently pursuing advanced training in web application development, focused on building both front-end and back-end solutions.
+              I&apos;m a system admin with an interest in development. Currently working at C3i Servicios Informáticos while studying web development.
             </p>
             <p className="text-gray-500 md:text-xl dark:text-gray-400">
-              I&apos;m enthusiastic about automation, clean configurations, and creating efficient, scalable systems.
-              My professional interests include connecting infrastructure with code, developing reliable systems, 
-              and continuously expanding my knowledge in both DevOps and web development.
+              I enjoy automation and building efficient systems. Constantly learning new technologies to expand my skillset.
             </p>
             <div className="mt-6 space-y-2">
               <h3 className="text-xl font-bold">Languages</h3>
               <div className="flex gap-2">
                 <Badge>Spanish (Native)</Badge>
-                <Badge>English (Fluent/Bilingual)</Badge>
+                <Badge>English (Fluent)</Badge>
               </div>
             </div>
           </div>
@@ -188,25 +179,25 @@ const About = () => {
                   <CardDescription>C3i Servicios Informáticos • Current (Part-time)</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p>Applying knowledge of infrastructure while simultaneously learning and refining development skills.</p>
+                  <p>Managing IT infrastructure while developing web skills</p>
                 </CardContent>
               </Card>
               <Card>
                 <CardHeader>
-                  <CardTitle>Ciclo Formativo de Grado Superior en Desarrollo de Aplicaciones Web (DAW)</CardTitle>
+                  <CardTitle>Web Application Development</CardTitle>
                   <CardDescription>CIFP Carlos III, Murcia • 2023 - 2025</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p>Focus on full-stack web development, covering both front-end and back-end technologies.</p>
+                  <p>Full-stack web development program</p>
                 </CardContent>
               </Card>
               <Card>
                 <CardHeader>
-                  <CardTitle>Ciclo de Grado Medio en Sistemas Microinformáticos y Redes (SMR)</CardTitle>
-                  <CardDescription>IES Ingeniero De la Cierva, Murcia • 2021 - 2023</CardDescription>
+                  <CardTitle>Microcomputer Systems and Networks</CardTitle>
+                  <CardDescription>IES Ingeniero De la Cierva • 2021 - 2023</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p>Completed in-depth coursework on microcomputer systems and networks.</p>
+                  <p>Foundational IT and networking coursework</p>
                 </CardContent>
               </Card>
             </div>
@@ -217,7 +208,6 @@ const About = () => {
   );
 };
 
-// Projects Section
 const Projects = () => {
   const projects = [
     {
@@ -248,7 +238,6 @@ const Projects = () => {
 
   return (
     <section id="projects" className="py-16 relative">
-      {/* Add Particles with gray color for Projects section */}
       <Particles
         className="absolute inset-0 -z-10 opacity-30"
         quantity={80}
@@ -260,9 +249,9 @@ const Projects = () => {
       <div className="container px-4 md:px-6 max-w-7xl mx-auto">
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <div className="space-y-2">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Featured Projects</h2>
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Projects</h2>
             <p className="max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
-              Here are some of my recent projects that showcase my skills and expertise.
+              Some of my recent work
             </p>
           </div>
         </div>
@@ -309,17 +298,15 @@ const Projects = () => {
   );
 };
 
-// Skills Section
 const Skills = () => {
   const skillCategories = {
-    devops: ["Linux", "Windows", "Docker", "Kubernetes", "AWS", "Azure", "GCP", "Terraform", "Jenkins", "Ansible", "Prometheus", "Grafana", "Nginx", "PostgreSQL", "S3"],
-    development: ["HTML", "CSS", "JavaScript", "Tailwind", "Angular", "Python", "Java", "PHP (Laravel)", "Node.js", "WordPress", "Postman", "Electron"],
+    devops: ["Linux", "Windows", "Docker", "Kubernetes", "AWS", "Azure", "Terraform", "Ansible", "PostgreSQL", "Nginx"],
+    development: ["HTML", "CSS", "JavaScript", "Tailwind", "Angular", "Python", "Java", "PHP", "Node.js", "WordPress"],
     learning: ["Rust", "React", "TypeScript", "Godot"]
   };
 
   return (
     <section id="skills" className="py-16 bg-gray-50 dark:bg-gray-900 relative">
-      {/* Add Particles with gray color for Skills section */}
       <Particles
         className="absolute inset-0 -z-10 opacity-20"
         quantity={120}
@@ -331,21 +318,21 @@ const Skills = () => {
       <div className="container px-4 md:px-6 max-w-7xl mx-auto">
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <div className="space-y-2">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Skills & Technologies</h2>
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Skills</h2>
             <p className="max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
-              These are the technologies and tools I work with.
+              Technologies I work with
             </p>
           </div>
         </div>
         <div className="mt-8">
           <Tabs defaultValue="devops" className="w-full">
             <TabsList className="grid w-full grid-cols-3">
-              <TabsTrigger value="devops">DevOps & Infrastructure</TabsTrigger>
-              <TabsTrigger value="development">Web Development</TabsTrigger>
+              <TabsTrigger value="devops">DevOps</TabsTrigger>
+              <TabsTrigger value="development">Development</TabsTrigger>
               <TabsTrigger value="learning">Learning</TabsTrigger>
             </TabsList>
             <TabsContent value="devops" className="mt-6">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                 {skillCategories.devops.map((skill, index) => (
                   <Card key={index} className="flex items-center justify-center p-4">
                     <p className="text-center font-medium">{skill}</p>
@@ -354,7 +341,7 @@ const Skills = () => {
               </div>
             </TabsContent>
             <TabsContent value="development" className="mt-6">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                 {skillCategories.development.map((skill, index) => (
                   <Card key={index} className="flex items-center justify-center p-4">
                     <p className="text-center font-medium">{skill}</p>
@@ -378,11 +365,9 @@ const Skills = () => {
   );
 };
 
-// Contact Section
 const Contact = () => {
   return (
     <section id="contact" className="py-16 relative">
-      {/* Add Particles with gray color for Contact section */}
       <Particles
         className="absolute inset-0 -z-10 opacity-30"
         quantity={90}
@@ -394,9 +379,9 @@ const Contact = () => {
       <div className="container px-4 md:px-6 max-w-7xl mx-auto">
         <div className="grid gap-6 lg:grid-cols-2 lg:gap-12">
           <div className="space-y-4">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Get In Touch</h2>
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Contact</h2>
             <p className="text-gray-500 md:text-xl dark:text-gray-400">
-              Have a project in mind or want to discuss potential opportunities? Feel free to reach out!
+              Get in touch
             </p>
             <div className="flex flex-col space-y-2">
               <div className="flex items-center gap-2">
@@ -420,7 +405,6 @@ const Contact = () => {
           <Card className="p-6">
             <CardHeader>
               <CardTitle>Send a Message</CardTitle>
-              <CardDescription>Fill out the form below and I&apos;ll get back to you as soon as possible.</CardDescription>
             </CardHeader>
             <CardContent>
               <form className="space-y-4">
@@ -454,13 +438,12 @@ const Contact = () => {
   );
 };
 
-// Footer
 const Footer = () => {
   return (
     <footer className="py-6 border-t">
       <div className="container px-4 md:px-6 max-w-7xl mx-auto">
         <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-          <p className="text-gray-500 dark:text-gray-400">© 2025 Javier Muñoz Solano. All rights reserved.</p>
+          <p className="text-gray-500 dark:text-gray-400">© 2025 Javier Muñoz Solano</p>
           <div className="flex gap-4">
             <a href="https://github.com/JBibu" target="_blank" rel="noopener noreferrer">
               <Button variant="ghost" size="icon" aria-label="GitHub">
