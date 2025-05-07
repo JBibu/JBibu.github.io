@@ -299,19 +299,82 @@ const Projects = () => {
 };
 
 const Skills = () => {
-  const skillCategories = {
-    devops: {
-      title: "DevOps & Infrastructure",
-      icons: "linux,windows,bash,powershell,aws,azure,gcp,openstack,proxmox,terraform,jenkins,ansible,s3,docker,kubernetes,prometheus,grafana,nginx,postgres"
-    },
-    development: {
-      title: "Web Development",
-      icons: "html,css,javascript,tailwind,angular,py,java,php,laravel,wordpress,nodejs,postman,electron"
-    },
-    learning: {
-      title: "Currently Learning",
-      icons: "rust,react,typescript,godot"
-    }
+  const skillsData = {
+    devops: [
+      { name: "Linux", icon: "linux" },
+      { name: "Windows", icon: "windows" },
+      { name: "Bash", icon: "bash" },
+      { name: "PowerShell", icon: "powershell" },
+      { name: "AWS", icon: "aws" },
+      { name: "Azure", icon: "azure" },
+      { name: "GCP", icon: "gcp" },
+      { name: "OpenStack", icon: "openstack" },
+      { name: "Proxmox", icon: "proxmox" },
+      { name: "Terraform", icon: "terraform" },
+      { name: "Jenkins", icon: "jenkins" },
+      { name: "Ansible", icon: "ansible" },
+      { name: "S3", icon: "s3" },
+      { name: "Docker", icon: "docker" },
+      { name: "Kubernetes", icon: "kubernetes" },
+      { name: "Prometheus", icon: "prometheus" },
+      { name: "Grafana", icon: "grafana" },
+      { name: "Nginx", icon: "nginx" },
+      { name: "PostgreSQL", icon: "postgres" }
+    ],
+    development: [
+      { name: "HTML", icon: "html" },
+      { name: "CSS", icon: "css" },
+      { name: "JavaScript", icon: "javascript" },
+      { name: "Tailwind", icon: "tailwind" },
+      { name: "Angular", icon: "angular" },
+      { name: "Python", icon: "py" },
+      { name: "Java", icon: "java" },
+      { name: "PHP", icon: "php" },
+      { name: "Laravel", icon: "laravel" },
+      { name: "WordPress", icon: "wordpress" },
+      { name: "Node.js", icon: "nodejs" },
+      { name: "Postman", icon: "postman" },
+      { name: "Electron", icon: "electron" }
+    ],
+    learning: [
+      { name: "Rust", icon: "rust" },
+      { name: "React", icon: "react" },
+      { name: "TypeScript", icon: "typescript" },
+      { name: "Godot", icon: "godot" }
+    ]
+  };
+
+  // Use useEffect and useState to manage the theme based on system preference
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  
+  useEffect(() => {
+    // Check if dark mode is active
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    setIsDarkMode(mediaQuery.matches);
+    
+    // Add listener to update state when preference changes
+    const handleChange = (e) => setIsDarkMode(e.matches);
+    mediaQuery.addEventListener('change', handleChange);
+    
+    // Cleanup listener
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
+
+  const renderSkillGrid = (skills) => {
+    return (
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {skills.map((skill, index) => (
+          <Card key={index} className="p-3 flex items-center space-x-3">
+            <img 
+              src={`https://go-skill-icons.vercel.app/api/icons?i=${skill.icon}&theme=${isDarkMode ? 'dark' : 'light'}`} 
+              alt={skill.name} 
+              className="w-10 h-10"
+            />
+            <span className="font-medium">{skill.name}</span>
+          </Card>
+        ))}
+      </div>
+    );
   };
 
   return (
@@ -342,43 +405,31 @@ const Skills = () => {
             </TabsList>
             <TabsContent value="devops" className="mt-6">
               <Card className="p-6">
-                <CardContent className="flex flex-col items-center justify-center">
-                  <h3 className="text-xl font-semibold mb-4">{skillCategories.devops.title}</h3>
-                  <div className="flex justify-center w-full overflow-hidden">
-                    <img
-                      src={`https://go-skill-icons.vercel.app/api/icons?i=${skillCategories.devops.icons}&theme=light&perline=6&titles=true`}
-                      alt="DevOps Skills"
-                      className="w-full max-w-4xl"
-                    />
-                  </div>
+                <CardHeader>
+                  <CardTitle>DevOps & Infrastructure</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  {renderSkillGrid(skillsData.devops)}
                 </CardContent>
               </Card>
             </TabsContent>
             <TabsContent value="development" className="mt-6">
               <Card className="p-6">
-                <CardContent className="flex flex-col items-center justify-center">
-                  <h3 className="text-xl font-semibold mb-4">{skillCategories.development.title}</h3>
-                  <div className="flex justify-center w-full overflow-hidden">
-                    <img
-                      src={`https://go-skill-icons.vercel.app/api/icons?i=${skillCategories.development.icons}&theme=light&perline=5&titles=true`}
-                      alt="Development Skills"
-                      className="w-full max-w-4xl"
-                    />
-                  </div>
+                <CardHeader>
+                  <CardTitle>Web Development</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  {renderSkillGrid(skillsData.development)}
                 </CardContent>
               </Card>
             </TabsContent>
             <TabsContent value="learning" className="mt-6">
               <Card className="p-6">
-                <CardContent className="flex flex-col items-center justify-center">
-                  <h3 className="text-xl font-semibold mb-4">{skillCategories.learning.title}</h3>
-                  <div className="flex justify-center w-full overflow-hidden">
-                    <img
-                      src={`https://go-skill-icons.vercel.app/api/icons?i=${skillCategories.learning.icons}&theme=light&perline=4&titles=true`}
-                      alt="Learning Skills"
-                      className="w-full max-w-md"
-                    />
-                  </div>
+                <CardHeader>
+                  <CardTitle>Currently Learning</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  {renderSkillGrid(skillsData.learning)}
                 </CardContent>
               </Card>
             </TabsContent>
