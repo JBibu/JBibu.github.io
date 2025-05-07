@@ -18,6 +18,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
+import { useTheme } from "next-themes";
 
 const AcrylicNavbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -60,7 +61,7 @@ const AcrylicNavbar = () => {
     <div
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled 
-          ? "bg-white/10 backdrop-blur-lg backdrop-saturate-150 shadow-md" 
+          ? "bg-white/10 dark:bg-gray-900/10 backdrop-blur-lg backdrop-saturate-150 shadow-md" 
           : "bg-transparent"
       }`}
     >
@@ -96,13 +97,13 @@ const Hero = () => {
                 Building efficient systems with a focus on DevOps and web development
               </p>
               <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400 mt-2">
-                <MapPin className="h-4 w-4" />
+                <MapPin className="h-3 w-3" />
                 <span>Murcia, Spain</span>
               </div>
             </div>
             <div className="flex flex-col gap-2 min-[400px]:flex-row">
               <Button size="lg" className="gap-2">
-                <Download className="h-4 w-4" />
+                <Download className="h-3 w-3" />
                 Download Resume
               </Button>
               <Button size="lg" variant="outline" className="gap-2">
@@ -112,17 +113,17 @@ const Hero = () => {
             <div className="flex gap-4">
               <a href="https://github.com/JBibu" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                 <Button variant="ghost" size="icon">
-                  <Github className="h-5 w-5" />
+                  <Github className="h-4 w-4" />
                 </Button>
               </a>
               <a href="https://linkedin.com/in/jbibu" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                 <Button variant="ghost" size="icon">
-                  <Linkedin className="h-5 w-5" />
+                  <Linkedin className="h-4 w-4" />
                 </Button>
               </a>
               <a href="mailto:javier@munozsolano.com" aria-label="Email">
                 <Button variant="ghost" size="icon">
-                  <Mail className="h-5 w-5" />
+                  <Mail className="h-4 w-4" />
                 </Button>
               </a>
             </div>
@@ -283,7 +284,7 @@ const Projects = () => {
               </CardContent>
               <CardFooter className="flex gap-2">
                 <Button variant="outline" size="sm" className="gap-1">
-                  <Github className="h-4 w-4" />
+                  <Github className="h-3 w-3" />
                   GitHub
                 </Button>
                 <Button size="sm" className="gap-1">
@@ -299,66 +300,20 @@ const Projects = () => {
 };
 
 const Skills = () => {
-  const skillsData = {
-    devops: [
-      { name: "Linux", icon: "linux" },
-      { name: "Windows", icon: "windows" },
-      { name: "Bash", icon: "bash" },
-      { name: "PowerShell", icon: "powershell" },
-      { name: "AWS", icon: "aws" },
-      { name: "Azure", icon: "azure" },
-      { name: "GCP", icon: "gcp" },
-      { name: "OpenStack", icon: "openstack" },
-      { name: "Proxmox", icon: "proxmox" },
-      { name: "Terraform", icon: "terraform" },
-      { name: "Jenkins", icon: "jenkins" },
-      { name: "Ansible", icon: "ansible" },
-      { name: "S3", icon: "s3" },
-      { name: "Docker", icon: "docker" },
-      { name: "Kubernetes", icon: "kubernetes" },
-      { name: "Prometheus", icon: "prometheus" },
-      { name: "Grafana", icon: "grafana" },
-      { name: "Nginx", icon: "nginx" },
-      { name: "PostgreSQL", icon: "postgres" }
-    ],
-    development: [
-      { name: "HTML", icon: "html" },
-      { name: "CSS", icon: "css" },
-      { name: "JavaScript", icon: "javascript" },
-      { name: "Tailwind", icon: "tailwind" },
-      { name: "Angular", icon: "angular" },
-      { name: "Python", icon: "py" },
-      { name: "Java", icon: "java" },
-      { name: "PHP", icon: "php" },
-      { name: "Laravel", icon: "laravel" },
-      { name: "WordPress", icon: "wordpress" },
-      { name: "Node.js", icon: "nodejs" },
-      { name: "Postman", icon: "postman" },
-      { name: "Electron", icon: "electron" }
-    ],
-    learning: [
-      { name: "Rust", icon: "rust" },
-      { name: "React", icon: "react" },
-      { name: "TypeScript", icon: "typescript" },
-      { name: "Godot", icon: "godot" }
-    ]
-  };
-
-  const renderSkillGrid = (skills) => {
-    return (
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {skills.map((skill, index) => (
-          <Card key={index} className="p-3 flex items-center space-x-3">
-            <img 
-              src={`https://go-skill-icons.vercel.app/api/icons?i=${skill.icon}&theme=light`} 
-              alt={skill.name} 
-              className="w-10 h-10"
-            />
-            <span className="font-medium">{skill.name}</span>
-          </Card>
-        ))}
-      </div>
-    );
+  const { theme } = useTheme();
+  const skillCategories = {
+    devops: {
+      title: "DevOps & Infrastructure",
+      icons: "linux,windows,bash,powershell,aws,azure,gcp,openstack,proxmox,terraform,jenkins,ansible,s3,docker,kubernetes,prometheus,grafana,nginx,postgres"
+    },
+    development: {
+      title: "Web Development",
+      icons: "html,css,javascript,tailwind,angular,py,java,php,laravel,wordpress,nodejs,postman,electron"
+    },
+    learning: {
+      title: "Currently Learning",
+      icons: "rust,react,typescript,godot"
+    }
   };
 
   return (
@@ -389,31 +344,43 @@ const Skills = () => {
             </TabsList>
             <TabsContent value="devops" className="mt-6">
               <Card className="p-6">
-                <CardHeader>
-                  <CardTitle>DevOps & Infrastructure</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  {renderSkillGrid(skillsData.devops)}
+                <CardContent className="flex flex-col items-center justify-center">
+                  <h3 className="text-xl font-semibold mb-4">{skillCategories.devops.title}</h3>
+                  <div className="flex justify-center w-full overflow-hidden">
+                    <img
+                      src={`https://go-skill-icons.vercel.app/api/icons?i=${skillCategories.devops.icons}&theme=${theme === 'dark' ? 'dark' : 'light'}&perline=6&titles=true&size=small`}
+                      alt="DevOps Skills"
+                      className="w-full max-w-4xl"
+                    />
+                  </div>
                 </CardContent>
               </Card>
             </TabsContent>
             <TabsContent value="development" className="mt-6">
               <Card className="p-6">
-                <CardHeader>
-                  <CardTitle>Web Development</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  {renderSkillGrid(skillsData.development)}
+                <CardContent className="flex flex-col items-center justify-center">
+                  <h3 className="text-xl font-semibold mb-4">{skillCategories.development.title}</h3>
+                  <div className="flex justify-center w-full overflow-hidden">
+                    <img
+                      src={`https://go-skill-icons.vercel.app/api/icons?i=${skillCategories.development.icons}&theme=${theme === 'dark' ? 'dark' : 'light'}&perline=5&titles=true&size=small`}
+                      alt="Development Skills"
+                      className="w-full max-w-4xl"
+                    />
+                  </div>
                 </CardContent>
               </Card>
             </TabsContent>
             <TabsContent value="learning" className="mt-6">
               <Card className="p-6">
-                <CardHeader>
-                  <CardTitle>Currently Learning</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  {renderSkillGrid(skillsData.learning)}
+                <CardContent className="flex flex-col items-center justify-center">
+                  <h3 className="text-xl font-semibold mb-4">{skillCategories.learning.title}</h3>
+                  <div className="flex justify-center w-full overflow-hidden">
+                    <img
+                      src={`https://go-skill-icons.vercel.app/api/icons?i=${skillCategories.learning.icons}&theme=${theme === 'dark' ? 'dark' : 'light'}&perline=4&titles=true&size=small`}
+                      alt="Learning Skills"
+                      className="w-full max-w-md"
+                    />
+                  </div>
                 </CardContent>
               </Card>
             </TabsContent>
@@ -444,19 +411,19 @@ const Contact = () => {
             </p>
             <div className="flex flex-col space-y-2">
               <div className="flex items-center gap-2">
-                <Mail className="h-5 w-5" />
+                <Mail className="h-4 w-4" />
                 <span>javier@munozsolano.com</span>
               </div>
               <div className="flex items-center gap-2">
-                <Linkedin className="h-5 w-5" />
+                <Linkedin className="h-4 w-4" />
                 <span>linkedin.com/in/jbibu</span>
               </div>
               <div className="flex items-center gap-2">
-                <Github className="h-5 w-5" />
+                <Github className="h-4 w-4" />
                 <span>github.com/JBibu</span>
               </div>
               <div className="flex items-center gap-2">
-                <MapPin className="h-5 w-5" />
+                <MapPin className="h-4 w-4" />
                 <span>Murcia, Spain</span>
               </div>
             </div>
@@ -470,20 +437,20 @@ const Contact = () => {
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <label htmlFor="name" className="text-sm font-medium">Name</label>
-                    <input id="name" className="w-full rounded-md border border-gray-300 p-2" placeholder="Your name" />
+                    <input id="name" className="w-full rounded-md border border-gray-300 dark:border-gray-700 p-2 dark:bg-gray-800" placeholder="Your name" />
                   </div>
                   <div className="space-y-2">
                     <label htmlFor="email" className="text-sm font-medium">Email</label>
-                    <input id="email" className="w-full rounded-md border border-gray-300 p-2" placeholder="Your email" type="email" />
+                    <input id="email" className="w-full rounded-md border border-gray-300 dark:border-gray-700 p-2 dark:bg-gray-800" placeholder="Your email" type="email" />
                   </div>
                 </div>
                 <div className="space-y-2">
                   <label htmlFor="subject" className="text-sm font-medium">Subject</label>
-                  <input id="subject" className="w-full rounded-md border border-gray-300 p-2" placeholder="Subject" />
+                  <input id="subject" className="w-full rounded-md border border-gray-300 dark:border-gray-700 p-2 dark:bg-gray-800" placeholder="Subject" />
                 </div>
                 <div className="space-y-2">
                   <label htmlFor="message" className="text-sm font-medium">Message</label>
-                  <textarea id="message" className="min-h-[120px] w-full rounded-md border border-gray-300 p-2" placeholder="Your message" />
+                  <textarea id="message" className="min-h-[120px] w-full rounded-md border border-gray-300 dark:border-gray-700 p-2 dark:bg-gray-800" placeholder="Your message" />
                 </div>
               </form>
             </CardContent>
@@ -499,24 +466,24 @@ const Contact = () => {
 
 const Footer = () => {
   return (
-    <footer className="py-6 border-t">
+    <footer className="py-6 border-t dark:border-gray-800">
       <div className="container px-4 md:px-6 max-w-7xl mx-auto">
         <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
           <p className="text-gray-500 dark:text-gray-400">© 2025 Javier Muñoz Solano</p>
           <div className="flex gap-4">
             <a href="https://github.com/JBibu" target="_blank" rel="noopener noreferrer">
               <Button variant="ghost" size="icon" aria-label="GitHub">
-                <Github className="h-5 w-5" />
+                <Github className="h-4 w-4" />
               </Button>
             </a>
             <a href="https://linkedin.com/in/jbibu" target="_blank" rel="noopener noreferrer">
               <Button variant="ghost" size="icon" aria-label="LinkedIn">
-                <Linkedin className="h-5 w-5" />
+                <Linkedin className="h-4 w-4" />
               </Button>
             </a>
             <a href="mailto:javier@munozsolano.com">
               <Button variant="ghost" size="icon" aria-label="Email">
-                <Mail className="h-5 w-5" />
+                <Mail className="h-4 w-4" />
               </Button>
             </a>
           </div>
@@ -526,16 +493,26 @@ const Footer = () => {
   );
 };
 
+const ThemeProvider = ({ children }) => {
+  return (
+    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+      {children}
+    </ThemeProvider>
+  );
+};
+
 export default function HomePage() {
   return (
-    <main className="min-h-screen mx-auto">
-      <AcrylicNavbar />
-      <Hero />
-      <About />
-      <Projects />
-      <Skills />
-      <Contact />
-      <Footer />
-    </main>
+    <ThemeProvider>
+      <main className="min-h-screen mx-auto">
+        <AcrylicNavbar />
+        <Hero />
+        <About />
+        <Projects />
+        <Skills />
+        <Contact />
+        <Footer />
+      </main>
+    </ThemeProvider>
   );
 }
