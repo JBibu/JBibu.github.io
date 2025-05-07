@@ -18,7 +18,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import { useTheme } from "next-themes";
+import { useTheme, ThemeProvider as NextThemeProvider } from "next-themes";
 
 const AcrylicNavbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -493,17 +493,22 @@ const Footer = () => {
   );
 };
 
-const ThemeProvider = ({ children }) => {
+// Type for the CustomThemeProvider component
+interface ThemeProviderProps {
+  children: React.ReactNode;
+}
+
+const CustomThemeProvider = ({ children }: ThemeProviderProps) => {
   return (
-    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+    <NextThemeProvider attribute="class" defaultTheme="system" enableSystem>
       {children}
-    </ThemeProvider>
+    </NextThemeProvider>
   );
 };
 
 export default function HomePage() {
   return (
-    <ThemeProvider>
+    <CustomThemeProvider>
       <main className="min-h-screen mx-auto">
         <AcrylicNavbar />
         <Hero />
@@ -513,6 +518,6 @@ export default function HomePage() {
         <Contact />
         <Footer />
       </main>
-    </ThemeProvider>
+    </CustomThemeProvider>
   );
 }
