@@ -163,11 +163,11 @@ const About = () => {
           <div className="space-y-4">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">About Me</h2>
             <p className="text-gray-500 md:text-xl dark:text-gray-400">
-              I'm an aspiring full-stack developer and system administrator with a solid foundation in IT infrastructure and a passion for DevOps. 
+              I&apos;m an aspiring full-stack developer and system administrator with a solid foundation in IT infrastructure and a passion for DevOps. 
               Currently pursuing advanced training in web application development, focused on building both front-end and back-end solutions.
             </p>
             <p className="text-gray-500 md:text-xl dark:text-gray-400">
-              I'm enthusiastic about automation, clean configurations, and creating efficient, scalable systems.
+              I&apos;m enthusiastic about automation, clean configurations, and creating efficient, scalable systems.
               My professional interests include connecting infrastructure with code, developing reliable systems, 
               and continuously expanding my knowledge in both DevOps and web development.
             </p>
