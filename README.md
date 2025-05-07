@@ -8,7 +8,7 @@ This project is a modern, responsive portfolio website built with Next.js, Tailw
 
 You can check out the current state of the portfolio project here:
 
-👉 [Live Demo](https://jbibu.github.io/shadcn-nextjs-portfolio/)
+👉 [Live Demo](https://jbibu.xyz)
 
 > ⚠️ Note: This is a work-in-progress.
 
