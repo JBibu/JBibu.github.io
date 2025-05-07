@@ -151,11 +151,13 @@ const Navbar1 = ({
         <NavigationMenuItem key={item.title}>
           <NavigationMenuTrigger>{item.title}</NavigationMenuTrigger>
           <NavigationMenuContent className="bg-popover text-popover-foreground">
-            {item.items.map((subItem) => (
-              <NavigationMenuLink asChild key={subItem.title} className="w-80">
-                <SubMenuLink item={subItem} />
-              </NavigationMenuLink>
-            ))}
+            <div className="grid gap-2 p-2">
+              {item.items.map((subItem) => (
+                <NavigationMenuLink asChild key={subItem.title}>
+                  <SubMenuLink item={subItem} />
+                </NavigationMenuLink>
+              ))}
+            </div>
           </NavigationMenuContent>
         </NavigationMenuItem>
       );
@@ -163,15 +165,15 @@ const Navbar1 = ({
 
     return (
       <NavigationMenuItem key={item.title}>
-        <Button 
-          variant="ghost" 
-          asChild 
-          className="h-10 w-max px-4 py-2 text-sm font-medium"
-        >
-          <NavigationMenuLink href={item.url}>
-            {item.title}
-          </NavigationMenuLink>
-        </Button>
+        <NavigationMenuLink asChild>
+          <Button 
+            variant="ghost" 
+            className="h-10 w-max px-4 py-2 text-sm font-medium"
+            asChild
+          >
+            <a href={item.url}>{item.title}</a>
+          </Button>
+        </NavigationMenuLink>
       </NavigationMenuItem>
     );
   };
@@ -186,7 +188,7 @@ const Navbar1 = ({
           </AccordionTrigger>
           <AccordionContent className="mt-2">
             {item.items.map((subItem) => (
-              <SubMenuLink key={subItem.title} item={subItem} />
+              <SubMenuLink key={subItem.title} item={subItem} onClick={() => setOpen(false)} />
             ))}
           </AccordionContent>
         </AccordionItem>
@@ -197,13 +199,11 @@ const Navbar1 = ({
       <Button 
         key={item.title} 
         variant="ghost" 
-        asChild 
         className="justify-start px-2 font-semibold"
         onClick={() => setOpen(false)} // Close sheet when a menu item is clicked
+        asChild
       >
-        <a href={item.url}>
-          {item.title}
-        </a>
+        <a href={item.url}>{item.title}</a>
       </Button>
     );
   };
@@ -237,12 +237,12 @@ const Navbar1 = ({
               </NavigationMenu>
             </div>
           </div>
-          <div className="flex gap-2 items-center"> {/* Added items-center to align height */}
+          <div className="flex gap-2 items-center"> 
             <ModeToggle />
-            <Button asChild variant="outline" size="sm" className="h-10"> {/* Fixed height */}
+            <Button asChild variant="outline" size="sm" className="h-10">
               <a href={auth.login.url}>{auth.login.title}</a>
             </Button>
-            <Button asChild size="sm" className="h-10"> {/* Fixed height */}
+            <Button asChild size="sm" className="h-10">
               <a href={auth.signup.url}>{auth.signup.title}</a>
             </Button>
           </div>
@@ -250,7 +250,7 @@ const Navbar1 = ({
 
         {/* Mobile Menu */}
         <div className="block lg:hidden">
-          <div className="flex items-center justify-between px-2"> {/* Added padding */}
+          <div className="flex items-center justify-between px-2">
             {/* Logo with text */}
             <a href={logo.url} className="flex items-center gap-2">
               <div className="relative w-8 h-8">
@@ -268,7 +268,7 @@ const Navbar1 = ({
             </a>
             <Sheet open={open} onOpenChange={setOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="mr-2"> {/* Changed to ghost and added margin */}
+                <Button variant="ghost" size="icon" className="mr-2">
                   <Menu className="size-4" />
                 </Button>
               </SheetTrigger>
@@ -303,15 +303,15 @@ const Navbar1 = ({
                   <div className="flex flex-col gap-3">
                     <ModeToggle />
                     <Button 
-                      asChild 
                       variant="outline"
-                      onClick={() => setOpen(false)} // Close sheet when clicked
+                      onClick={() => setOpen(false)}
+                      asChild
                     >
                       <a href={auth.login.url}>{auth.login.title}</a>
                     </Button>
                     <Button 
+                      onClick={() => setOpen(false)}
                       asChild
-                      onClick={() => setOpen(false)} // Close sheet when clicked
                     >
                       <a href={auth.signup.url}>{auth.signup.title}</a>
                     </Button>
@@ -327,11 +327,12 @@ const Navbar1 = ({
 };
 
 // SubMenuLink component for dropdown items
-const SubMenuLink = ({ item }: { item: MenuItem }) => {
+const SubMenuLink = ({ item, onClick }: { item: MenuItem; onClick?: () => void }) => {
   return (
     <a
       className="flex flex-row gap-4 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none hover:bg-muted hover:text-accent-foreground"
       href={item.url}
+      onClick={onClick}
     >
       <div className="text-foreground">{item.icon}</div>
       <div>
