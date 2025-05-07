@@ -18,6 +18,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
+import { useTheme } from "next-themes"; // Import useTheme hook
 
 const AcrylicNavbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -60,7 +61,7 @@ const AcrylicNavbar = () => {
     <div
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled 
-          ? "bg-white/10 backdrop-blur-lg backdrop-saturate-150 shadow-md" 
+          ? "bg-white/10 dark:bg-gray-900/50 backdrop-blur-lg backdrop-saturate-150 shadow-md" 
           : "bg-transparent"
       }`}
     >
@@ -299,6 +300,15 @@ const Projects = () => {
 };
 
 const Skills = () => {
+  // Add useTheme hook to detect current theme
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  
+  // Add effect to handle mounted state to avoid hydration mismatch
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const skillsData = {
     devops: [
       { name: "Linux", icon: "linux" },
@@ -344,29 +354,30 @@ const Skills = () => {
     ]
   };
 
-  // Use useEffect and useState to manage the theme based on system preference
-  const [isDarkMode, setIsDarkMode] = useState(false);
-  
-  useEffect(() => {
-    // Check if dark mode is active
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    setIsDarkMode(mediaQuery.matches);
-    
-    // Add listener to update state when preference changes
-    const handleChange = (e) => setIsDarkMode(e.matches);
-    mediaQuery.addEventListener('change', handleChange);
-    
-    // Cleanup listener
-    return () => mediaQuery.removeEventListener('change', handleChange);
-  }, []);
-
   const renderSkillGrid = (skills) => {
+    // If not mounted yet, return loading state to avoid hydration mismatch
+    if (!mounted) {
+      return (
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {skills.map((skill, index) => (
+            <Card key={index} className="p-3 flex items-center space-x-3">
+              <div className="w-10 h-10 bg-gray-200 dark:bg-gray-700 rounded-md animate-pulse"></div>
+              <span className="font-medium">{skill.name}</span>
+            </Card>
+          ))}
+        </div>
+      );
+    }
+
+    // Determine the theme to use for icons
+    const iconTheme = theme === 'dark' ? 'dark' : 'light';
+    
     return (
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {skills.map((skill, index) => (
           <Card key={index} className="p-3 flex items-center space-x-3">
             <img 
-              src={`https://go-skill-icons.vercel.app/api/icons?i=${skill.icon}&theme=${isDarkMode ? 'dark' : 'light'}`} 
+              src={`https://go-skill-icons.vercel.app/api/icons?i=${skill.icon}&theme=${iconTheme}`} 
               alt={skill.name} 
               className="w-10 h-10"
             />
@@ -486,20 +497,20 @@ const Contact = () => {
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <label htmlFor="name" className="text-sm font-medium">Name</label>
-                    <input id="name" className="w-full rounded-md border border-gray-300 p-2" placeholder="Your name" />
+                    <input id="name" className="w-full rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 p-2" placeholder="Your name" />
                   </div>
                   <div className="space-y-2">
                     <label htmlFor="email" className="text-sm font-medium">Email</label>
-                    <input id="email" className="w-full rounded-md border border-gray-300 p-2" placeholder="Your email" type="email" />
+                    <input id="email" className="w-full rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 p-2" placeholder="Your email" type="email" />
                   </div>
                 </div>
                 <div className="space-y-2">
                   <label htmlFor="subject" className="text-sm font-medium">Subject</label>
-                  <input id="subject" className="w-full rounded-md border border-gray-300 p-2" placeholder="Subject" />
+                  <input id="subject" className="w-full rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 p-2" placeholder="Subject" />
                 </div>
                 <div className="space-y-2">
                   <label htmlFor="message" className="text-sm font-medium">Message</label>
-                  <textarea id="message" className="min-h-[120px] w-full rounded-md border border-gray-300 p-2" placeholder="Your message" />
+                  <textarea id="message" className="min-h-[120px] w-full rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 p-2" placeholder="Your message" />
                 </div>
               </form>
             </CardContent>
@@ -515,7 +526,7 @@ const Contact = () => {
 
 const Footer = () => {
   return (
-    <footer className="py-6 border-t">
+    <footer className="py-6 border-t dark:border-gray-800">
       <div className="container px-4 md:px-6 max-w-7xl mx-auto">
         <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
           <p className="text-gray-500 dark:text-gray-400">© 2025 Javier Muñoz Solano</p>
@@ -542,6 +553,7 @@ const Footer = () => {
   );
 };
 
+// Add ThemeProvider setup
 export default function HomePage() {
   return (
     <main className="min-h-screen mx-auto">
