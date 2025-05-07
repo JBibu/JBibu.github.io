@@ -1,4 +1,4 @@
-// components/Navbar1.tsx
+// Updated Navbar1.jsx
 "use client";
 
 import { useState } from "react";
@@ -22,7 +22,6 @@ import {
 } from "@/components/ui/navigation-menu";
 import {
   Sheet,
-  SheetClose,
   SheetContent,
   SheetHeader,
   SheetTitle,
@@ -142,6 +141,7 @@ const Navbar1 = ({
     signup: { title: "Sign up", url: "#" },
   },
 }: Navbar1Props) => {
+  // Add state to control the sheet
   const [open, setOpen] = useState(false);
 
   // Helper function to render desktop menu items
@@ -186,9 +186,7 @@ const Navbar1 = ({
           </AccordionTrigger>
           <AccordionContent className="mt-2">
             {item.items.map((subItem) => (
-              <SheetClose asChild key={subItem.title}>
-                <SubMenuLink item={subItem} />
-              </SheetClose>
+              <SubMenuLink key={subItem.title} item={subItem} />
             ))}
           </AccordionContent>
         </AccordionItem>
@@ -196,17 +194,17 @@ const Navbar1 = ({
     }
 
     return (
-      <SheetClose asChild key={item.title}>
-        <Button 
-          variant="ghost" 
-          asChild 
-          className="justify-start px-2 font-semibold"
-        >
-          <a href={item.url}>
-            {item.title}
-          </a>
-        </Button>
-      </SheetClose>
+      <Button 
+        key={item.title} 
+        variant="ghost" 
+        asChild 
+        className="justify-start px-2 font-semibold"
+        onClick={() => setOpen(false)} // Close sheet when a menu item is clicked
+      >
+        <a href={item.url}>
+          {item.title}
+        </a>
+      </Button>
     );
   };
 
@@ -239,13 +237,12 @@ const Navbar1 = ({
               </NavigationMenu>
             </div>
           </div>
-          <div className="flex gap-2">
-            {/* Made all these buttons the same size with h-9 */}
-            <ModeToggle className="h-9" />
-            <Button asChild variant="outline" size="sm" className="h-9">
+          <div className="flex gap-2 items-center"> {/* Added items-center to align height */}
+            <ModeToggle />
+            <Button asChild variant="outline" size="sm" className="h-10"> {/* Fixed height */}
               <a href={auth.login.url}>{auth.login.title}</a>
             </Button>
-            <Button asChild size="sm" className="h-9">
+            <Button asChild size="sm" className="h-10"> {/* Fixed height */}
               <a href={auth.signup.url}>{auth.signup.title}</a>
             </Button>
           </div>
@@ -253,8 +250,8 @@ const Navbar1 = ({
 
         {/* Mobile Menu */}
         <div className="block lg:hidden">
-          <div className="flex items-center justify-between px-2">
-            {/* Logo with title */}
+          <div className="flex items-center justify-between px-2"> {/* Added padding */}
+            {/* Logo with text */}
             <a href={logo.url} className="flex items-center gap-2">
               <div className="relative w-8 h-8">
                 <Image 
@@ -271,16 +268,27 @@ const Navbar1 = ({
             </a>
             <Sheet open={open} onOpenChange={setOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="mr-2">
+                <Button variant="ghost" size="icon" className="mr-2"> {/* Changed to ghost and added margin */}
                   <Menu className="size-4" />
                 </Button>
               </SheetTrigger>
               <SheetContent className="overflow-y-auto">
                 <SheetHeader>
                   <SheetTitle>
-                    <span className="text-lg font-semibold tracking-tighter">
-                      Menu
-                    </span>
+                    <a href={logo.url} className="flex items-center gap-2">
+                      <div className="relative w-8 h-8">
+                        <Image 
+                          src={logo.src} 
+                          alt={logo.alt}
+                          fill 
+                          sizes="32px"
+                          className="object-contain"
+                        />
+                      </div>
+                      <span className="text-lg font-semibold tracking-tighter">
+                        {logo.title}
+                      </span>
+                    </a>
                   </SheetTitle>
                 </SheetHeader>
                 <div className="flex flex-col gap-6 p-4">
@@ -294,16 +302,19 @@ const Navbar1 = ({
 
                   <div className="flex flex-col gap-3">
                     <ModeToggle />
-                    <SheetClose asChild>
-                      <Button asChild variant="outline">
-                        <a href={auth.login.url}>{auth.login.title}</a>
-                      </Button>
-                    </SheetClose>
-                    <SheetClose asChild>
-                      <Button asChild>
-                        <a href={auth.signup.url}>{auth.signup.title}</a>
-                      </Button>
-                    </SheetClose>
+                    <Button 
+                      asChild 
+                      variant="outline"
+                      onClick={() => setOpen(false)} // Close sheet when clicked
+                    >
+                      <a href={auth.login.url}>{auth.login.title}</a>
+                    </Button>
+                    <Button 
+                      asChild
+                      onClick={() => setOpen(false)} // Close sheet when clicked
+                    >
+                      <a href={auth.signup.url}>{auth.signup.title}</a>
+                    </Button>
                   </div>
                 </div>
               </SheetContent>
