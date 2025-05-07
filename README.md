@@ -4,6 +4,10 @@
 
 This project is a modern, responsive portfolio website built with Next.js, Tailwind CSS, and shadcn/ui components. It features a clean design with particle animation backgrounds, acrylic-effect navbar, and multiple sections to showcase your skills and projects.
 
+## 🔎 Preview (Unfinished)
+
+[<a href=](https://jbibu.github.io/shadcn-nextjs-portfolio/)
+
 ## 🚀 Quick Start
 
 Clone the repository and install dependencies:
