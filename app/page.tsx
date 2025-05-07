@@ -1,4 +1,3 @@
-// src/app/page.tsx
 "use client";
 
 import { useState, useEffect } from "react";
@@ -7,11 +6,12 @@ import {
   Github,
   Linkedin,
   Mail,
-  Download
+  Download,
+  MapPin // Added for location
 } from "lucide-react";
-import Image from "next/image"; // Import Next.js Image component
+import Image from "next/image";
 
-import Particles from "@/components/Particles"; // Import the Particles component
+import Particles from "@/components/Particles";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -91,14 +91,18 @@ const Hero = () => {
           <div className="flex flex-col justify-center space-y-4">
             <div className="space-y-2">
               <Badge variant="outline" className="inline-block">
-                Full Stack Developer
+                System Administrator & Aspiring Full Stack Developer
               </Badge>
               <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-                Javier Muñoz
+                Javier Muñoz Solano
               </h1>
               <p className="max-w-[600px] text-gray-500 md:text-xl dark:text-gray-400">
-                Building beautiful, functional, and responsive web applications with modern technologies.
+                Building efficient, scalable systems with a passion for DevOps and web application development.
               </p>
+              <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400 mt-2">
+                <MapPin className="h-4 w-4" />
+                <span>Murcia, Spain</span>
+              </div>
             </div>
             <div className="flex flex-col gap-2 min-[400px]:flex-row">
               <Button size="lg" className="gap-2">
@@ -115,7 +119,7 @@ const Hero = () => {
                   <Github className="h-5 w-5" />
                 </Button>
               </a>
-              <a href="https://es.linkedin.com/in/jbibu" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <a href="https://linkedin.com/in/jbibu" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                 <Button variant="ghost" size="icon">
                   <Linkedin className="h-5 w-5" />
                 </Button>
@@ -130,8 +134,8 @@ const Hero = () => {
           <div className="flex items-center justify-center">
             <div className="relative aspect-square overflow-hidden rounded-full border-4 border-gray-200 dark:border-gray-800 md:w-[400px]">
               <Avatar className="h-full w-full">
-                <AvatarImage src="/avatar.jpg" alt="Javier Muñoz" />
-                <AvatarFallback>JM</AvatarFallback>
+                <AvatarImage src="/avatar.jpg" alt="Javier Muñoz Solano" />
+                <AvatarFallback>JMS</AvatarFallback>
               </Avatar>
             </div>
           </div>
@@ -159,35 +163,50 @@ const About = () => {
           <div className="space-y-4">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">About Me</h2>
             <p className="text-gray-500 md:text-xl dark:text-gray-400">
-              I&apos;m a passionate full-stack developer with over 5 years of experience building web applications.
-              I specialize in React, Next.js, and Node.js, with a strong focus on creating accessible and
-              performant user interfaces.
+              I'm an aspiring full-stack developer and system administrator with a solid foundation in IT infrastructure and a passion for DevOps. 
+              Currently pursuing advanced training in web application development, focused on building both front-end and back-end solutions.
             </p>
             <p className="text-gray-500 md:text-xl dark:text-gray-400">
-              My journey in web development started in 2018, and since then, I&apos;ve worked with various
-              startups and agencies to deliver high-quality products. I&apos;m constantly learning new technologies
-              and improving my skills to stay ahead in this ever-evolving field.
+              I'm enthusiastic about automation, clean configurations, and creating efficient, scalable systems.
+              My professional interests include connecting infrastructure with code, developing reliable systems, 
+              and continuously expanding my knowledge in both DevOps and web development.
             </p>
+            <div className="mt-6 space-y-2">
+              <h3 className="text-xl font-bold">Languages</h3>
+              <div className="flex gap-2">
+                <Badge>Spanish (Native)</Badge>
+                <Badge>English (Fluent/Bilingual)</Badge>
+              </div>
+            </div>
           </div>
           <div className="space-y-4">
-            <h3 className="text-2xl font-bold">Experience</h3>
+            <h3 className="text-2xl font-bold">Experience & Education</h3>
             <div className="grid gap-4">
               <Card>
                 <CardHeader>
-                  <CardTitle>Senior Frontend Developer</CardTitle>
-                  <CardDescription>ABC Tech • 2021 - Present</CardDescription>
+                  <CardTitle>System Administrator</CardTitle>
+                  <CardDescription>C3i Servicios Informáticos • Current (Part-time)</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p>Led the development of multiple web applications using React and Next.js.</p>
+                  <p>Applying knowledge of infrastructure while simultaneously learning and refining development skills.</p>
                 </CardContent>
               </Card>
               <Card>
                 <CardHeader>
-                  <CardTitle>Full Stack Developer</CardTitle>
-                  <CardDescription>XYZ Agency • 2019 - 2021</CardDescription>
+                  <CardTitle>Ciclo Formativo de Grado Superior en Desarrollo de Aplicaciones Web (DAW)</CardTitle>
+                  <CardDescription>CIFP Carlos III, Murcia • 2023 - 2025</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p>Developed and maintained various client projects using modern web technologies.</p>
+                  <p>Focus on full-stack web development, covering both front-end and back-end technologies.</p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader>
+                  <CardTitle>Ciclo de Grado Medio en Sistemas Microinformáticos y Redes (SMR)</CardTitle>
+                  <CardDescription>IES Ingeniero De la Cierva, Murcia • 2021 - 2023</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p>Completed in-depth coursework on microcomputer systems and networks.</p>
                 </CardContent>
               </Card>
             </div>
@@ -293,9 +312,9 @@ const Projects = () => {
 // Skills Section
 const Skills = () => {
   const skillCategories = {
-    frontend: ["React", "Next.js", "TypeScript", "JavaScript", "HTML/CSS", "Tailwind CSS", "Redux", "Three.js"],
-    backend: ["Node.js", "Express", "MongoDB", "PostgreSQL", "Firebase", "GraphQL", "REST API", "AWS"],
-    tools: ["Git", "GitHub", "VS Code", "Figma", "Docker", "CI/CD", "Jest", "Webpack"],
+    devops: ["Linux", "Windows", "Docker", "Kubernetes", "AWS", "Azure", "GCP", "Terraform", "Jenkins", "Ansible", "Prometheus", "Grafana", "Nginx", "PostgreSQL", "S3"],
+    development: ["HTML", "CSS", "JavaScript", "Tailwind", "Angular", "Python", "Java", "PHP (Laravel)", "Node.js", "WordPress", "Postman", "Electron"],
+    learning: ["Rust", "React", "TypeScript", "Godot"]
   };
 
   return (
@@ -314,38 +333,38 @@ const Skills = () => {
           <div className="space-y-2">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Skills & Technologies</h2>
             <p className="max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
-              These are the technologies and tools I work with on a regular basis.
+              These are the technologies and tools I work with.
             </p>
           </div>
         </div>
         <div className="mt-8">
-          <Tabs defaultValue="frontend" className="w-full">
+          <Tabs defaultValue="devops" className="w-full">
             <TabsList className="grid w-full grid-cols-3">
-              <TabsTrigger value="frontend">Frontend</TabsTrigger>
-              <TabsTrigger value="backend">Backend</TabsTrigger>
-              <TabsTrigger value="tools">Tools</TabsTrigger>
+              <TabsTrigger value="devops">DevOps & Infrastructure</TabsTrigger>
+              <TabsTrigger value="development">Web Development</TabsTrigger>
+              <TabsTrigger value="learning">Learning</TabsTrigger>
             </TabsList>
-            <TabsContent value="frontend" className="mt-6">
+            <TabsContent value="devops" className="mt-6">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {skillCategories.frontend.map((skill, index) => (
+                {skillCategories.devops.map((skill, index) => (
                   <Card key={index} className="flex items-center justify-center p-4">
                     <p className="text-center font-medium">{skill}</p>
                   </Card>
                 ))}
               </div>
             </TabsContent>
-            <TabsContent value="backend" className="mt-6">
+            <TabsContent value="development" className="mt-6">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {skillCategories.backend.map((skill, index) => (
+                {skillCategories.development.map((skill, index) => (
                   <Card key={index} className="flex items-center justify-center p-4">
                     <p className="text-center font-medium">{skill}</p>
                   </Card>
                 ))}
               </div>
             </TabsContent>
-            <TabsContent value="tools" className="mt-6">
+            <TabsContent value="learning" className="mt-6">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {skillCategories.tools.map((skill, index) => (
+                {skillCategories.learning.map((skill, index) => (
                   <Card key={index} className="flex items-center justify-center p-4">
                     <p className="text-center font-medium">{skill}</p>
                   </Card>
@@ -382,15 +401,19 @@ const Contact = () => {
             <div className="flex flex-col space-y-2">
               <div className="flex items-center gap-2">
                 <Mail className="h-5 w-5" />
-                <span>hello@johndoe.com</span>
+                <span>javier@munozsolano.com</span>
               </div>
               <div className="flex items-center gap-2">
                 <Linkedin className="h-5 w-5" />
-                <span>linkedin.com/in/johndoe</span>
+                <span>linkedin.com/in/jbibu</span>
               </div>
               <div className="flex items-center gap-2">
                 <Github className="h-5 w-5" />
-                <span>github.com/johndoe</span>
+                <span>github.com/JBibu</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <MapPin className="h-5 w-5" />
+                <span>Murcia, Spain</span>
               </div>
             </div>
           </div>
@@ -437,17 +460,23 @@ const Footer = () => {
     <footer className="py-6 border-t">
       <div className="container px-4 md:px-6 max-w-7xl mx-auto">
         <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-          <p className="text-gray-500 dark:text-gray-400">© 2025 Javier Muñoz. All rights reserved.</p>
+          <p className="text-gray-500 dark:text-gray-400">© 2025 Javier Muñoz Solano. All rights reserved.</p>
           <div className="flex gap-4">
-            <Button variant="ghost" size="icon" aria-label="GitHub">
-              <Github className="h-5 w-5" />
-            </Button>
-            <Button variant="ghost" size="icon" aria-label="LinkedIn">
-              <Linkedin className="h-5 w-5" />
-            </Button>
-            <Button variant="ghost" size="icon" aria-label="Email">
-              <Mail className="h-5 w-5" />
-            </Button>
+            <a href="https://github.com/JBibu" target="_blank" rel="noopener noreferrer">
+              <Button variant="ghost" size="icon" aria-label="GitHub">
+                <Github className="h-5 w-5" />
+              </Button>
+            </a>
+            <a href="https://linkedin.com/in/jbibu" target="_blank" rel="noopener noreferrer">
+              <Button variant="ghost" size="icon" aria-label="LinkedIn">
+                <Linkedin className="h-5 w-5" />
+              </Button>
+            </a>
+            <a href="mailto:javier@munozsolano.com">
+              <Button variant="ghost" size="icon" aria-label="Email">
+                <Mail className="h-5 w-5" />
+              </Button>
+            </a>
           </div>
         </div>
       </div>
