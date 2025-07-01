@@ -2,19 +2,17 @@
 
 # shadcn/ui & Next.js Portfolio Website
 
-This project is a modern, responsive portfolio website built with Next.js, Tailwind CSS, and shadcn/ui components. It features a clean design with particle animation backgrounds, acrylic-effect navbar, and multiple sections to showcase your skills and projects.
+A responsive portfolio website built with Next.js, Tailwind CSS, and shadcn/ui components. Features particle animation backgrounds, acrylic-effect navbar, and sections for showcasing skills and projects.
 
-## 🔎 Live Preview (Unfinished)
+## Live Preview
 
-You can check out the current state of the portfolio project here:
+Current state of the project: [Live Demo](https://jbibu.xyz)
 
-👉 [Live Demo](https://jbibu.xyz)
+Note: This is a work-in-progress.
 
-> ⚠️ Note: This is a work-in-progress.
+## Quick Start
 
-## 🚀 Quick Start
-
-Clone the repository and install dependencies:
+Clone and install:
 
 ```bash
 git clone https://github.com/JBibu/shadcn-nextjs-portfolio.git
@@ -23,76 +21,76 @@ npm install
 npx next
 ```
 
-Visit `http://localhost:3000` to see your portfolio website in action.
+Visit `http://localhost:3000` to view the website.
 
-## ✨ Features
+## Features
 
-- **Modern UI Design** with acrylic-effect navbar, particle animations and shadcn components
-- **Fully Responsive** layout that works on mobile, tablet, and desktop
-- **Dark/Light Mode Support** using Tailwind CSS
-- **Component-based Architecture** with Next.js and React
-- **Interactive Sections** for about, projects, skills, and contact
-- **SEO Optimized** structure
-- **Lucide Icons** integration for beautiful, consistent iconography
-- **Easy Customization** through simple component props
+- UI with acrylic-effect navbar, particle animations and shadcn components
+- Responsive layout for mobile, tablet, and desktop
+- Dark/light mode support with Tailwind CSS
+- Component-based architecture with Next.js and React
+- Interactive sections for about, projects, skills, and contact
+- SEO optimized structure
+- Lucide Icons integration
+- Customizable through component props
 
-## 📋 Requirements
+## Requirements
 
 - Node.js 18.0 or higher
 - npm or yarn package manager
-- Basic knowledge of React and Next.js
+- Basic React and Next.js knowledge
 - Text editor (VS Code recommended)
 
-## 🔧 Customization
+## Customization
 
-The website can be easily customized through the following components:
+Customize the website through these components:
 
 1. **Navbar Configuration**:
-   - Update the logo, menu items, and action buttons in the `AcrylicNavbar` component
-   - Customize the acrylic effect behavior by modifying the scroll threshold
+   - Update logo, menu items, and action buttons in the `AcrylicNavbar` component
+   - Modify scroll threshold for acrylic effect
 
 2. **Personal Information**:
-   - Edit your name, title, and bio in the `Hero` component
+   - Edit name, title, and bio in the `Hero` component
    - Update social media links and resume download button
 
 3. **About Section**:
-   - Modify your professional experience and background information
-   - Add or remove experience cards as needed
+   - Modify professional experience and background information
+   - Add or remove experience cards
 
 4. **Projects Showcase**:
-   - Update the `projects` array with your own work
+   - Update the `projects` array with your work
    - Each project includes: title, description, image, tags, and links
 
 5. **Skills & Technologies**:
-   - Edit the `skillCategories` object to reflect your expertise
+   - Edit the `skillCategories` object for your expertise
    - Organize skills by frontend, backend, and tools categories
 
 6. **Contact Information**:
-   - Update your contact details and form settings
-   - Customize the contact form functionality
+   - Update contact details and form settings
+   - Customize contact form functionality
 
 7. **Styling**:
    - Adjust colors, spacing, and typography through Tailwind CSS classes
-   - Modify particle animation settings for each section
+   - Modify particle animation settings
 
-## 🎨 Sections
+## Sections
 
-1. **Hero** - Eye-catching introduction with profile picture, social links, and call-to-action buttons
+1. **Hero** - Introduction with profile picture, social links, and call-to-action buttons
 2. **About** - Professional background with experience cards
-3. **Projects** - Showcase of featured work with images and technology tags
+3. **Projects** - Featured work with images and technology tags
 4. **Skills** - Interactive tabs displaying technical expertise by category
 5. **Contact** - Contact form and information
 6. **Footer** - Copyright information and social links
 
-## 🛠️ Technologies Used
+## Technologies Used
 
 - **Next.js** - React framework with server-side rendering
 - **React** - JavaScript library for building user interfaces
 - **Tailwind CSS** - Utility-first CSS framework
 - **shadcn/ui** - Reusable UI components built with Radix UI and Tailwind
-- **Lucide React** - Beautiful & consistent icon set
+- **Lucide React** - Icon set
 - **TypeScript** - Type-safe JavaScript
 
-## 📜 License
+## License
 
-GNU General Public License v3.0
+GPL-3.0 License - see [LICENSE](LICENSE) file.
